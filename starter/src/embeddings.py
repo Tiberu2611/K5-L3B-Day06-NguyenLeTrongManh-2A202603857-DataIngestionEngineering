@@ -1,4 +1,8 @@
-"""Choose a real embedding provider (API or local) and implement this contract."""
+"""Real embedding provider: a local Sentence Transformers model.
+
+The same model, prefix and normalisation are used for every strategy. There is
+no mock or random fallback: if the model cannot be loaded, the pipeline stops.
+"""
 from typing import Protocol
 
 
@@ -15,15 +19,43 @@ class Embedder(Protocol):
         ...
 
 
-class MyEmbedder:
-    """TODO: implement a provider adapter; do not silently fall back to mock vectors."""
+# BGE retrieval models expect this instruction on queries only (model card).
+BGE_QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
 
-    def __init__(self, model_name: str) -> None:
+
+class MyEmbedder:
+    """Local Sentence Transformers adapter (CPU by default).
+
+    Documents are embedded as-is; queries get ``query_prefix``. Vectors are
+    L2-normalised so cosine distance in pgvector equals 1 - dot product.
+    """
+
+    def __init__(self, model_name: str, query_prefix: str | None = None,
+                 batch_size: int = 32, device: str = "cpu") -> None:
+        from sentence_transformers import SentenceTransformer  # heavy import
+
         self.model_name = model_name
-        raise NotImplementedError("TODO: initialize real embedder and dimensions")
+        self.query_prefix = BGE_QUERY_PREFIX if query_prefix is None and "bge" in model_name.lower() \
+            else (query_prefix or "")
+        self.batch_size = batch_size
+        self._model = SentenceTransformer(model_name, device=device)
+        dims = self._model.get_sentence_embedding_dimension()
+        if not dims:
+            raise RuntimeError(f"Cannot determine embedding dimensions for {model_name}")
+        self.dimensions = int(dims)
+        self.max_seq_length = int(self._model.max_seq_length)
+
+    def count_tokens(self, text: str) -> int:
+        return len(self._model.tokenizer.tokenize(text))
 
     def embed_documents(self, texts: list[str]) -> list[list[float]]:
-        raise NotImplementedError("TODO: embed_documents")
+        if not texts:
+            return []
+        vectors = self._model.encode(texts, batch_size=self.batch_size, normalize_embeddings=True,
+                                     show_progress_bar=False, convert_to_numpy=True)
+        return vectors.tolist()
 
     def embed_query(self, question: str) -> list[float]:
-        raise NotImplementedError("TODO: embed_query")
+        vector = self._model.encode([self.query_prefix + question], normalize_embeddings=True,
+                                    show_progress_bar=False, convert_to_numpy=True)[0]
+        return vector.tolist()
