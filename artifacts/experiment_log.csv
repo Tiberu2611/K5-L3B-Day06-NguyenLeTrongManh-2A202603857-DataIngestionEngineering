@@ -1,4 +1,4 @@
 strategy,chunking,chunk_size,overlap,metadata,filter,vectorizer,hypothesis,dev_hit1,dev_hit3,test_hit1,test_hit3,notes
-A,,,,,,,,,,,,
-B,,,,,,,,,,,,
-C,,,,,,,,,,,,
+A,fixed,500,50,document_id;source;page;page_end;book_no;book_title;chapter_no;chapter_title,none,"intfloat/multilingual-e5-small (local CPU, 384-d, cosine, pgvector)",Baseline: fixed windows cut sentences/dialogue; expect lower coherence.,3/15,6/15,0/5,2/5,
+B,paragraph,1000,0,document_id;source;page;page_end;book_no;book_title;chapter_no;chapter_title,none,"intfloat/multilingual-e5-small (local CPU, 384-d, cosine, pgvector)",Paragraph packing keeps whole ideas; expect better coherence and Hit@3 than A.,6/15,8/15,1/5,1/5,
+C,paragraph,1000,0,document_id;source;page;page_end;book_no;book_title;chapter_no;chapter_title,book_no (only when question supplies it),"intfloat/multilingual-e5-small (local CPU, 384-d, cosine, pgvector)",Same chunks as B + book_no filter when the question supplies it; expect gains on questions whose answer differs per book.,6/15,8/15,1/5,1/5,C reuses B chunks/vectors; differs from B only by the filter

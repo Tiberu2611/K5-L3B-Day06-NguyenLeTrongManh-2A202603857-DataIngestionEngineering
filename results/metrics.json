@@ -1,0 +1,185 @@
+{
+ "run": {
+  "run_at": "2026-11-14T05:29:43+00:00",
+  "benchmark_sha256": "15c9394a9ad27985ccd06f4e19310a857fe3eb999a42be1f67e5aa0800e1e6c1",
+  "benchmark_frozen_at": "2026-11-14T00:00:00+07:00 (before any retrieval run)",
+  "python": "3.14.6",
+  "platform": "Windows-11-10.0.22631-SP0",
+  "embedding": {
+   "provider": "local (sentence-transformers, CPU)",
+   "model": "intfloat/multilingual-e5-small",
+   "model_source": "https://huggingface.co/intfloat/multilingual-e5-small",
+   "model_license": "MIT (model card)",
+   "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+   "dimensions": 384,
+   "max_seq_length_tokens": 512,
+   "query_processing": "prefix 'query: ', L2-normalized",
+   "document_processing": "prefix 'passage: ', L2-normalized",
+   "cost_usd": 0.0,
+   "sentence-transformers": "6.3.0",
+   "torch": "2.15.0+cpu"
+  },
+  "vector_store": {
+   "name": "PostgreSQL + pgvector (docker compose, volume pg_data)",
+   "version": "PostgreSQL 16.16 + pgvector 0.8.7",
+   "connection": "postgresql://day6:***@127.0.0.1:55433/day6_lab",
+   "table": "chunks (one `collection` value per strategy)",
+   "metric": "cosine distance (<=>)",
+   "search": "exact: ORDER BY embedding <=> query LIMIT k (sequential scan, no ANN index)",
+   "filter": "SQL WHERE on typed columns book_no / chapter_no (whitelisted, parameterized)"
+  },
+  "top_k": 3,
+  "evidence_verification": {
+   "checked": 24,
+   "found": 24
+  }
+ },
+ "summary": [
+  {
+   "strategy": "A",
+   "split": "all",
+   "n": 20,
+   "hit@1": 3,
+   "hit@1_rate": 0.15,
+   "hit@3": 8,
+   "hit@3_rate": 0.4,
+   "mrr@3": 0.267,
+   "filter_questions": 5,
+   "filter_compliant": 0,
+   "failures": {
+    "evidence_split_across_chunks": 4,
+    "right_page_but_evidence_missing": 4,
+    "wrong_location": 4
+   }
+  },
+  {
+   "strategy": "A",
+   "split": "dev",
+   "n": 15,
+   "hit@1": 3,
+   "hit@1_rate": 0.2,
+   "hit@3": 6,
+   "hit@3_rate": 0.4,
+   "mrr@3": 0.289,
+   "filter_questions": 3,
+   "filter_compliant": 0,
+   "failures": {
+    "evidence_split_across_chunks": 2,
+    "right_page_but_evidence_missing": 3,
+    "wrong_location": 4
+   }
+  },
+  {
+   "strategy": "A",
+   "split": "test",
+   "n": 5,
+   "hit@1": 0,
+   "hit@1_rate": 0.0,
+   "hit@3": 2,
+   "hit@3_rate": 0.4,
+   "mrr@3": 0.2,
+   "filter_questions": 2,
+   "filter_compliant": 0,
+   "failures": {
+    "evidence_split_across_chunks": 2,
+    "right_page_but_evidence_missing": 1
+   }
+  },
+  {
+   "strategy": "B",
+   "split": "all",
+   "n": 20,
+   "hit@1": 7,
+   "hit@1_rate": 0.35,
+   "hit@3": 9,
+   "hit@3_rate": 0.45,
+   "mrr@3": 0.392,
+   "filter_questions": 5,
+   "filter_compliant": 1,
+   "failures": {
+    "right_page_but_evidence_missing": 5,
+    "wrong_location": 6
+   }
+  },
+  {
+   "strategy": "B",
+   "split": "dev",
+   "n": 15,
+   "hit@1": 6,
+   "hit@1_rate": 0.4,
+   "hit@3": 8,
+   "hit@3_rate": 0.533,
+   "mrr@3": 0.456,
+   "filter_questions": 3,
+   "filter_compliant": 1,
+   "failures": {
+    "right_page_but_evidence_missing": 4,
+    "wrong_location": 3
+   }
+  },
+  {
+   "strategy": "B",
+   "split": "test",
+   "n": 5,
+   "hit@1": 1,
+   "hit@1_rate": 0.2,
+   "hit@3": 1,
+   "hit@3_rate": 0.2,
+   "mrr@3": 0.2,
+   "filter_questions": 2,
+   "filter_compliant": 0,
+   "failures": {
+    "right_page_but_evidence_missing": 1,
+    "wrong_location": 3
+   }
+  },
+  {
+   "strategy": "C",
+   "split": "all",
+   "n": 20,
+   "hit@1": 7,
+   "hit@1_rate": 0.35,
+   "hit@3": 9,
+   "hit@3_rate": 0.45,
+   "mrr@3": 0.392,
+   "filter_questions": 5,
+   "filter_compliant": 5,
+   "failures": {
+    "right_page_but_evidence_missing": 7,
+    "wrong_location": 4
+   }
+  },
+  {
+   "strategy": "C",
+   "split": "dev",
+   "n": 15,
+   "hit@1": 6,
+   "hit@1_rate": 0.4,
+   "hit@3": 8,
+   "hit@3_rate": 0.533,
+   "mrr@3": 0.456,
+   "filter_questions": 3,
+   "filter_compliant": 3,
+   "failures": {
+    "right_page_but_evidence_missing": 4,
+    "wrong_location": 3
+   }
+  },
+  {
+   "strategy": "C",
+   "split": "test",
+   "n": 5,
+   "hit@1": 1,
+   "hit@1_rate": 0.2,
+   "hit@3": 1,
+   "hit@3_rate": 0.2,
+   "mrr@3": 0.2,
+   "filter_questions": 2,
+   "filter_compliant": 2,
+   "failures": {
+    "right_page_but_evidence_missing": 3,
+    "wrong_location": 1
+   }
+  }
+ ]
+}

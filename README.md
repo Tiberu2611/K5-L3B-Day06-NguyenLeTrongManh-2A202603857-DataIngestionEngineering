@@ -8,6 +8,21 @@ Biến tài liệu thành kho tri thức có thể truy xuất cho AI agent, r�
 |---|---|---|
 | Tối thiểu **30 trang nội dung** | Tối thiểu **3 cấu hình** | Tối thiểu **20 câu hỏi** |
 
+## Bài làm (demo)
+
+Corpus: `harrypotter.pdf`, Books 1–3 (914 trang nội dung) · embedding local `intfloat/multilingual-e5-small` · PostgreSQL 16 + pgvector 0.8.7 (Docker) · 3 chiến lược A/B/C · 20 câu benchmark (15 dev / 5 test).
+
+| Cần xem | Ở đâu |
+|---|---|
+| Đối chiếu từng yêu cầu với bài làm | [REQUIREMENTS_CHECK.md](REQUIREMENTS_CHECK.md) |
+| Cách cài và chạy, kiến trúc pipeline | [starter/README.md](starter/README.md) |
+| Manifest, quyền dữ liệu, quy tắc đếm trang | [data/manifest.json](data/manifest.json) |
+| Bộ câu hỏi, split, tiêu chí chọn chiến lược | [benchmark/](benchmark/README.md) |
+| Chỉ số, trace, log, bảng audit | [results/](results/metrics.md) |
+| Báo cáo cá nhân | [report/individual/](report/individual/) |
+
+> PDF có bản quyền; giảng viên đã chấp nhận dùng cho bài lab. Đặt file ở `starter/data/raw/harrypotter.pdf`. Không tái phân phối: không commit PDF, text, chunk hay index (xem `.gitignore`).
+
 ## Bắt đầu nhanh
 
 Dùng [starter PostgreSQL + pgvector](starter/README.md) để dựng database và hoàn thiện các hàm TODO, hoặc tự chọn vector store tương đương. Starter chỉ là khung: **bạn tự hiện thực pipeline và benchmark**.

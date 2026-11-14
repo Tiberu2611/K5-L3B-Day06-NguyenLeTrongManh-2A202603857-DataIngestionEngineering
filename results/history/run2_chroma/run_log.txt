@@ -1,0 +1,14 @@
+# python -m src.run  (2026-11-14T03:44:24Z)  run 2 after paragraph-detection fix
+[ingest] 914 content pages, 1,549,115 chars, empty=0, errors=0
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[index] A: 3476 chunks, embed+write 102.6s, reingest -> {'chunks_in_run': 3476, 'embedded_or_updated': 0, 'unchanged_skipped': 3476, 'obsolete_deleted': 0, 'count_after': 3476}
+[index] B: 1800 chunks, embed+write 238.7s, reingest -> {'chunks_in_run': 1800, 'embedded_or_updated': 0, 'unchanged_skipped': 1800, 'obsolete_deleted': 0, 'count_after': 1800}
+[index] C: 1800 chunks, embed+write 6.8s, reingest -> {'chunks_in_run': 1800, 'embedded_or_updated': 0, 'unchanged_skipped': 1800, 'obsolete_deleted': 0, 'count_after': 1800}
+[eval] A dev : Hit@1 3/15  Hit@3 6/15  filter 0/3
+[eval] A test: Hit@1 0/5  Hit@3 2/5  filter 0/2
+[eval] B dev : Hit@1 6/15  Hit@3 8/15  filter 1/3
+[eval] B test: Hit@1 1/5  Hit@3 1/5  filter 0/2
+[eval] C dev : Hit@1 6/15  Hit@3 8/15  filter 3/3
+[eval] C test: Hit@1 1/5  Hit@3 1/5  filter 2/2
+[audit] sheets in results\audit (labels) and results\private (full text, gitignored)
+EXIT DONE

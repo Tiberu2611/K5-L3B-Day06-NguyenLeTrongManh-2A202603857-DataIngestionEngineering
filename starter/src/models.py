@@ -7,8 +7,8 @@ from typing import Any
 class DocumentPage:
     document_id: str
     source: str
-    page: int
-    text: str
+    page: int                      # physical PDF page number (1-based)
+    text: str                      # normalized; one paragraph per line
     metadata: dict[str, Any] = field(default_factory=dict)
 
 
@@ -17,6 +17,6 @@ class Chunk:
     chunk_id: str
     document_id: str
     source: str
-    page: int
+    page: int                      # page where the chunk starts
     text: str
-    metadata: dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, Any] = field(default_factory=dict)  # includes page_end, book_no, chapter_no

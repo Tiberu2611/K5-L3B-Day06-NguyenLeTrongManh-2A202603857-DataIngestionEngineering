@@ -1,0 +1,15 @@
+# python -m src.run  (2026-11-14T03:24:51Z)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[ingest] 914 content pages, 1,549,114 chars, empty=0, errors=0
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  36%|███▌      | 72/199 [00:00<00:00, 700.34it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1414.60it/s]
+[index] A: 3476 chunks, embed+write 495.3s, reingest -> {'chunks_in_run': 3476, 'embedded_or_updated': 0, 'unchanged_skipped': 3476, 'obsolete_deleted': 0, 'count_after': 3476}
+[index] B: 1831 chunks, embed+write 451.3s, reingest -> {'chunks_in_run': 1831, 'embedded_or_updated': 0, 'unchanged_skipped': 1831, 'obsolete_deleted': 0, 'count_after': 1831}
+[index] C: 1831 chunks, embed+write 4.6s, reingest -> {'chunks_in_run': 1831, 'embedded_or_updated': 0, 'unchanged_skipped': 1831, 'obsolete_deleted': 0, 'count_after': 1831}
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  10%|█         | 20/199 [00:00<00:00, 191.06it/s]Loading weights:  51%|█████▏    | 102/199 [00:00<00:00, 553.92it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 900.04it/s]
+[eval] A dev : Hit@1 3/15  Hit@3 6/15  filter 0/3
+[eval] A test: Hit@1 0/5  Hit@3 2/5  filter 0/2
+[eval] B dev : Hit@1 4/15  Hit@3 10/15  filter 0/3
+[eval] B test: Hit@1 1/5  Hit@3 1/5  filter 0/2
+[eval] C dev : Hit@1 5/15  Hit@3 10/15  filter 3/3
+[eval] C test: Hit@1 1/5  Hit@3 1/5  filter 2/2
+[audit] sheets in results\audit (labels) and results\private (full text, gitignored)

@@ -1,0 +1,26 @@
+# python -m src.run  (2026-11-14T04:06:43Z)  run 3: PostgreSQL + pgvector
+[ingest] 914 content pages, 1,549,115 chars, empty=0, errors=0
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[index] A: 3476 chunks, embed+write 563.7s, reingest -> {'chunks_in_run': 3476, 'embedded_or_updated': 0, 'unchanged_skipped': 3476, 'obsolete_deleted': 0, 'count_after': 3476}
+[index] B: 1800 chunks, embed+write 483.5s, reingest -> {'chunks_in_run': 1800, 'embedded_or_updated': 0, 'unchanged_skipped': 1800, 'obsolete_deleted': 0, 'count_after': 1800}
+[index] C: 1800 chunks, embed+write 2.3s, reingest -> {'chunks_in_run': 1800, 'embedded_or_updated': 0, 'unchanged_skipped': 1800, 'obsolete_deleted': 0, 'count_after': 1800}
+[eval] A dev : Hit@1 3/15  Hit@3 6/15  filter 0/3
+[eval] A test: Hit@1 0/5  Hit@3 2/5  filter 0/2
+[eval] B dev : Hit@1 6/15  Hit@3 8/15  filter 1/3
+[eval] B test: Hit@1 1/5  Hit@3 1/5  filter 0/2
+[eval] C dev : Hit@1 6/15  Hit@3 8/15  filter 3/3
+[eval] C test: Hit@1 1/5  Hit@3 1/5  filter 2/2
+[audit] sheets in results\audit (labels) and results\private (full text, gitignored)
+EXIT DONE
+
+# Subsequent stage-only runs on the same index and benchmark (no re-embedding; Hit@1/Hit@3,
+# chunks and top-3 identical to the run above — only search latency differs between eval runs)
+# - python -m src.run --stage eval      (explicit "none"/"N/A" instead of null in traces; new DB connection
+#                                        per query, latency ~53/45/52 ms)
+# - python -m src.run --stage eval      (reuse one DB connection for search; latency 23/12/11 ms)
+# - python -m src.run --stage eval      (experiment_log vectorizer label -> pgvector; latency 38/18/17 ms;
+#                                        this is the run recorded in metrics.json, run_at 2026-11-14T04:30:08Z)
+# - python -m src.run --stage ingest    (manifest: page_list, metadata_schema, permission_status; cached pages)
+# - python -m src.run --stage audit     (label sheets merged, review_sheet.md regenerated)
+# - python scripts/verify_metadata_raw.py   -> 45/45 records confirmed against the raw PDF
+# - python -m src.run --stage audit-summary  -> results/audit_summary.json (0 null)

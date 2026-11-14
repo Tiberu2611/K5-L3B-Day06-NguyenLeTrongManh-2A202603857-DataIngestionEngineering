@@ -1,0 +1,153 @@
+{
+ "embedding": {
+  "provider": "local (sentence-transformers, CPU)",
+  "model": "intfloat/multilingual-e5-small",
+  "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "dimensions": 384,
+  "max_seq_length_tokens": 512,
+  "query_processing": "prefix 'query: ', L2-normalized",
+  "document_processing": "prefix 'passage: ', L2-normalized",
+  "cost_usd": 0.0,
+  "sentence-transformers": "6.3.0",
+  "torch": "2.15.0+cpu"
+ },
+ "model_load_seconds": 19.5,
+ "vector_store": {
+  "name": "chroma (PersistentClient)",
+  "version": "1.5.9",
+  "path": "data\\index\\chroma",
+  "metric": "cosine",
+  "index": "HNSW (approximate)",
+  "hnsw": {
+   "ef_construction": 200,
+   "ef_search": 200
+  }
+ },
+ "strategies": {
+  "A": {
+   "params": {
+    "chunking": "fixed",
+    "size": 500,
+    "overlap": 50,
+    "use_filter": false,
+    "collection": "hp_A_fixed500"
+   },
+   "chunks": 3476,
+   "cross_page_chunks": 950,
+   "length_chars": {
+    "min": 52,
+    "p10": 493,
+    "median": 497.0,
+    "p90": 499,
+    "max": 499,
+    "mean": 492.3
+   },
+   "total_chars": 1711334,
+   "total_tokens_incl_prefix": 497143,
+   "chunks_over_max_seq_len": 0,
+   "chunking_seconds": 0.06,
+   "embed_and_write_seconds": 102.6,
+   "vectors_reused_from_earlier_strategy": 0,
+   "first_ingest": {
+    "chunks_in_run": 3476,
+    "embedded_or_updated": 710,
+    "unchanged_skipped": 2766,
+    "obsolete_deleted": 0,
+    "count_after": 3476
+   },
+   "reingest_same_version": {
+    "chunks_in_run": 3476,
+    "embedded_or_updated": 0,
+    "unchanged_skipped": 3476,
+    "obsolete_deleted": 0,
+    "count_after": 3476
+   },
+   "reingest_seconds": 0.4,
+   "reingest_ok": true,
+   "cost_usd": 0.0
+  },
+  "B": {
+   "params": {
+    "chunking": "paragraph",
+    "max_size": 1000,
+    "use_filter": false,
+    "collection": "hp_B_para1000"
+   },
+   "chunks": 1800,
+   "cross_page_chunks": 780,
+   "length_chars": {
+    "min": 39,
+    "p10": 679,
+    "median": 899.0,
+    "p90": 986,
+    "max": 1000,
+    "mean": 860.1
+   },
+   "total_chars": 1548229,
+   "total_tokens_incl_prefix": 443785,
+   "chunks_over_max_seq_len": 0,
+   "chunking_seconds": 0.03,
+   "embed_and_write_seconds": 238.7,
+   "vectors_reused_from_earlier_strategy": 0,
+   "first_ingest": {
+    "chunks_in_run": 1800,
+    "embedded_or_updated": 879,
+    "unchanged_skipped": 921,
+    "obsolete_deleted": 31,
+    "count_after": 1800
+   },
+   "reingest_same_version": {
+    "chunks_in_run": 1800,
+    "embedded_or_updated": 0,
+    "unchanged_skipped": 1800,
+    "obsolete_deleted": 0,
+    "count_after": 1800
+   },
+   "reingest_seconds": 0.5,
+   "reingest_ok": true,
+   "cost_usd": 0.0
+  },
+  "C": {
+   "params": {
+    "chunking": "paragraph",
+    "max_size": 1000,
+    "use_filter": true,
+    "collection": "hp_C_para1000_filter"
+   },
+   "chunks": 1800,
+   "cross_page_chunks": 780,
+   "length_chars": {
+    "min": 39,
+    "p10": 679,
+    "median": 899.0,
+    "p90": 986,
+    "max": 1000,
+    "mean": 860.1
+   },
+   "total_chars": 1548229,
+   "total_tokens_incl_prefix": 443785,
+   "chunks_over_max_seq_len": 0,
+   "chunking_seconds": 0.1,
+   "embed_and_write_seconds": 6.8,
+   "vectors_reused_from_earlier_strategy": 879,
+   "first_ingest": {
+    "chunks_in_run": 1800,
+    "embedded_or_updated": 879,
+    "unchanged_skipped": 921,
+    "obsolete_deleted": 31,
+    "count_after": 1800
+   },
+   "reingest_same_version": {
+    "chunks_in_run": 1800,
+    "embedded_or_updated": 0,
+    "unchanged_skipped": 1800,
+    "obsolete_deleted": 0,
+    "count_after": 1800
+   },
+   "reingest_seconds": 0.6,
+   "reingest_ok": true,
+   "cost_usd": 0.0
+  }
+ },
+ "finished_at": "2026-11-14T03:52:56+00:00"
+}
