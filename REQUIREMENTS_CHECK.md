@@ -84,9 +84,9 @@
 | Yêu cầu | Trạng thái | Việc cần làm |
 |---|---|---|
 | Không có secret, dữ liệu không được phép trong repo | ✅ | `.env`, PDF (`starter/data/raw/`, chỉ giữ `.gitkeep`), `data/processed`, `data/index`, `results/private` đều trong `.gitignore` |
-| Điền [STUDENT.md](STUDENT.md) (họ tên, MSSV, lớp, link repo, commit chốt) | ⚠️ | Đã có họ tên, MSSV, lớp, chủ đề, link repo; còn **commit chốt** (điền sau khi commit + push) |
+| Điền [STUDENT.md](STUDENT.md) (họ tên, MSSV, lớp, link repo, commit chốt) | ✅ | Đủ thông tin; commit chốt `2f2dc5b` |
 | Học viên hiểu và giải thích được bài làm (RULES) | ⚠️ | Đọc báo cáo + `starter/README.md`; nắm 3 điểm chính: vì sao A tốt hơn trên test, vì sao filter không tăng Hit@3, lỗi tách đoạn đã sửa |
 | Nhãn coherence/grounding/metadata đã đủ, không còn null | ✅ | LLM judge + script đọc PDF gốc |
 | Học viên duyệt nhãn LLM | ✅ | 45/45 đã duyệt (2026-11-14), `student_reviewed` = 10/10 và 5/5 |
 | Xác nhận quyền dùng corpus với giảng viên | ✅ | Đã được chấp nhận (2026-11-14) |
-| Commit, push lên repo cá nhân, nộp link | ❌ | Học viên làm (chưa có commit nào) |
+| Commit, push lên repo cá nhân, nộp link | ⚠️ | Đã commit `2f2dc5b` và push lên `origin/main`. Còn lại: kiểm tra repo mở được cho người chấm, rồi nộp link qua kênh của lớp |
