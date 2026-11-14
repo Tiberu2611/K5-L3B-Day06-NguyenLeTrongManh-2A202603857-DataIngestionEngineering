@@ -29,9 +29,8 @@ Mẫu báo cáo: [report/individual/MSSV_HoTen.md](report/individual/MSSV_HoTen.
 - [x] Có audit thủ công và phân tích cả 5 khía cạnh theo GUIDE; ghi giới hạn.
 - [x] Có lệnh chạy, code, manifest, experiment log và báo cáo cá nhân.
 - [x] Không có secret, dữ liệu riêng tư hoặc dữ liệu không được phép chia sẻ.
-- [ ] Repo mở được cho người chấm và đã nộp link theo hướng dẫn lớp.
+- [x] Repo mở được cho người chấm và đã nộp link theo hướng dẫn lớp.
 
 > **Bằng chứng cho từng mục:** [REQUIREMENTS_CHECK.md](REQUIREMENTS_CHECK.md). Ghi chú cho 3 mục:
 > - **Audit:** nhãn do LLM soạn, học viên duyệt 45/45; phương pháp ghi ở `results/audit/README.md`.
 > - **Dữ liệu:** PDF có bản quyền, giảng viên đã chấp nhận cho lab; PDF, text trích xuất và trace đầy đủ không commit.
-> - **Mục cuối:** chỉ tích sau khi đã push và nộp link qua kênh của lớp.
