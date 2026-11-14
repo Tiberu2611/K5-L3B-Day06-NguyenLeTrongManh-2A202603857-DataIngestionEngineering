@@ -8,3 +8,6 @@ __pycache__/
 .DS_Store
 .pytest_cache/
 *.sqlite
+
+# Copyrighted corpus (Harry Potter): raw book files stay local, never commit
+starter/data/raw/
